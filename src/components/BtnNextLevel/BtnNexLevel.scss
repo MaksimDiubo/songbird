@@ -1,0 +1,8 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.btn {
+  grid-area: btn;
+  @include font (1.5rem, 1.5rem, normal, uppercase);
+  @include block ($color-block-secondary, block, none);
+}

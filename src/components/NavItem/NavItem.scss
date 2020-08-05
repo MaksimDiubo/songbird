@@ -1,0 +1,7 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.navItem {
+  @include font (1.5rem, 1.5rem, normal, uppercase);
+  list-style: none;
+}

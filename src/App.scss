@@ -1,6 +1,7 @@
+@import './scss/abstracts/variables';
+
 .app {
   width: 100vw;
   height: 100vh;
-  // background: $color-background;
   background: radial-gradient(circle, $color-background 0%, $color-secondary 100%);
 }

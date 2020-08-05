@@ -1,0 +1,6 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.score {
+  @include font (3rem, 2.5rem)
+}

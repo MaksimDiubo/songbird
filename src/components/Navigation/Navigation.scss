@@ -1,0 +1,7 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.navigation {
+  @include block ($color-block-secondary);
+  grid-area: nav;
+}
