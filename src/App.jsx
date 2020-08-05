@@ -10,6 +10,6 @@ const App = () => {
       <Container />
     </div>
   );
-}
+};
 
-export default App
+export default App;

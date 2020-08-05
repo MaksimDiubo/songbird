@@ -1,17 +1,50 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Answer from '../Answer';
 
+import shuffle from '../../utils/shuffle';
+
 import './AnswerBlock.scss';
 
-const AnswerBlock = () => {
+const AnswerBlock = ({ birdGroup, question: { name: questionName }, checkAnswer }) => {
+  AnswerBlock.propTypes = {
+    birdGroup: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        species: PropTypes.string,
+        description: PropTypes.string,
+        image: PropTypes.string,
+        audio: PropTypes.string
+      })
+    ).isRequired,
+    question: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      species: PropTypes.string,
+      description: PropTypes.string,
+      image: PropTypes.string,
+      audio: PropTypes.string
+    }).isRequired,
+    checkAnswer: PropTypes.func.isRequired
+  };
+
   return (
-    <div className= 'answerBlock'>
-      <Answer />
-      <Answer />
-      <Answer />
+    <div className="answerBlock">
+      { shuffle(birdGroup).map((el) => {
+        const { id, name } = el;
+        return (
+          <Answer
+            key={id.toString()}
+            name={name}
+            questionName={questionName}
+            checkAnswer={checkAnswer}
+          />
+        )
+      })}
     </div>
   );
-}
+};
 
 export default AnswerBlock;

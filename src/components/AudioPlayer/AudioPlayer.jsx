@@ -1,17 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './AudioPlayer.scss';
 
-const AudioPlayer = () => {
+const AudioPlayer = ({ src }) => {
+  AudioPlayer.propTypes = {
+    src: PropTypes.string.isRequired
+  }
+
   return (
     <audio
-      className='audioPlayer'
+      className="audioPlayer"
       controls
-      src='https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC512582-190604_1087_Grus_tok.mp3'
-    >
+      src={ src }    >
       <track kind="captions" />
     </audio>
   );
-}
+};
 
 export default AudioPlayer;

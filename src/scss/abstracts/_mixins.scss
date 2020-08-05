@@ -22,3 +22,11 @@
   border-radius: 5px;
   background-color: $color;
 }
+
+@mixin button {
+  font-family: 'Roboto', sans-serif;
+  color: $color-text;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+}

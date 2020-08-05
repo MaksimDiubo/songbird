@@ -3,10 +3,23 @@
 
 .answer {
   @include block ($color-block-primary, flex, space-between);
+  width: 100%;
   @include font (1.5rem, 1.5rem);
-  align-items: center;
+  @include button;
+  height: 45px;
+
 
   &:not(:first-child) {
     border-top: none;
   }
+}
+
+.correct{
+  text-decoration: none;
+  color: $color-right;
+}
+
+.wrong{
+  text-decoration: line-through;
+  color: $color-wrong;
 }

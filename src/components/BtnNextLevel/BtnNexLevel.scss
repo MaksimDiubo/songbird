@@ -5,6 +5,5 @@
   grid-area: btn;
   @include font (1.5rem, 1.5rem, normal, uppercase);
   @include block ($color-block-secondary, block, none);
-  font-family: 'Roboto', sans-serif;
-  color: $color-text;
+  @include button;
 }

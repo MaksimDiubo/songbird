@@ -7,11 +7,11 @@ import './Header.scss';
 
 const Header = () => {
   return (
-    <div className='header'>
+    <div className="header">
       <Logo />
       <Score />
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
