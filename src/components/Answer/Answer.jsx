@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import mood from '../../../public/images/icons/mood.svg';
@@ -14,6 +14,10 @@ const Answer = ({ name, questionName, checkAnswer }) => {
   };
 
   const [isCorrect, setCorrect] = useState(null)
+
+  useEffect(()=> {
+    setCorrect(null)
+  }, [name, questionName])
 
   const clickHandler = () => {
     if (name === questionName) {
@@ -40,6 +44,8 @@ const Answer = ({ name, questionName, checkAnswer }) => {
       <img src={isCorrect ? mood : moodBad} alt="img" />
     )
   }
+
+
 
   return (
     <button
