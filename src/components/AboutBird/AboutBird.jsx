@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import AudioPlayer from '../AudioPlayer';
 
+import defaultImg from '../../../public/images/default/DefaultImg.png'
+
 import './AboutBird.scss';
 
 const AboutBird = ({ mode, question: { name, species, description, image, audio }, answer }) => {
@@ -34,18 +36,30 @@ const AboutBird = ({ mode, question: { name, species, description, image, audio 
     </div>
   );
 
+  const aboutBirdInner = (
+    <>
+      <div className="question">
+        <div className="birdImg" style={{backgroundImage: `url(${answer ? image : defaultImg})`}}/>
+          <div className="info">
+            <h3>{ answer ? name : '***' }</h3>
+            <hr className="hr" />
+            {mode === 'description' ? latinName : null}
+            <AudioPlayer src={audio}/>
+          </div>
+        </div>
+      {mode === 'description' ? text : null}
+    </>
+  )
+
+  const aboutBirdPlaceholder = (
+    <>
+      <span className="description">Послушайте плейер и выберите название птицы, чей голос прозвучал</span>
+    </>
+  )
+
   return (
     <div className={mode === 'description' ? 'aboutBird aboutBird-description' : 'aboutBird'}>
-      <div className="question">
-        <div className="birdImg" style={{backgroundImage: `url(${image})`}}/>
-        <div className="info">
-          <h3>{ answer ? name : '***' }</h3>
-          <hr className="hr" />
-          {mode === 'description' ? latinName : null}
-          <AudioPlayer src={audio}/>
-        </div>
-      </div>
-      {mode === 'description' ? text : null}
+      { !answer && mode === 'description' ? aboutBirdPlaceholder : aboutBirdInner}
     </div>
   );
 };

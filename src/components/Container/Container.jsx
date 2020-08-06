@@ -34,6 +34,11 @@ const Container = () => {
         question: getQuestion(birdsData[questionState.index + 1]),
         index: questionState.index + 1
       })
+      setScore({
+        ...scoreState,
+        answerCounter: 5,
+        answer: false
+      })
     }
   }
 
@@ -42,7 +47,6 @@ const Container = () => {
       setScore({
        ...scoreState,
        score: scoreState.score + scoreState.answerCounter,
-       answerCounter: 5,
        answer,
      })
       return
