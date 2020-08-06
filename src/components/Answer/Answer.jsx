@@ -45,8 +45,6 @@ const Answer = ({ name, questionName, checkAnswer }) => {
     )
   }
 
-
-
   return (
     <button
       type="button"

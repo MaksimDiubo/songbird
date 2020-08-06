@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Score.scss';
 
-const Score = () => {
+const Score = ({ score }) => {
+  Score.propTypes = {
+    score: PropTypes.number.isRequired
+  }
+
   return (
     <p className="score">
-      Score: <span>0</span>
+      Score: <span>{score}</span>
     </p>
   );
 };

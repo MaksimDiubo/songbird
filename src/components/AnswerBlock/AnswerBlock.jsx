@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 import Answer from '../Answer';
 
-import shuffle from '../../utils/shuffle';
-
 import './AnswerBlock.scss';
 
-const AnswerBlock = ({ birdGroup, question: { name: questionName }, checkAnswer }) => {
+const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer }) => {
   AnswerBlock.propTypes = {
-    birdGroup: PropTypes.arrayOf(
+    category: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
         name: PropTypes.string,
@@ -32,7 +30,7 @@ const AnswerBlock = ({ birdGroup, question: { name: questionName }, checkAnswer 
 
   return (
     <div className="answerBlock">
-      { shuffle(birdGroup).map((el) => {
+      { category.map((el) => {
         const { id, name } = el;
         return (
           <Answer

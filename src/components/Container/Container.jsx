@@ -14,36 +14,57 @@ import './Container.scss';
 
 const Container = () => {
 
-  const getQuestion = (group) => {
-    const index = getRandom(0, group.length);
-    return group[index];
+  const getQuestion = (category) => {
+    const index = getRandom(0, category.length);
+    return category[index];
   }
 
-  const [birdGroup, setBirdGroup] = useState(birdsData[0]);
+  const [questionState, setQuestionState] = useState({ category: birdsData[0], question: getQuestion(birdsData[0]), index: 0 });
 
   const navClickHandler = (index) => {
-    setBirdGroup(birdsData[index]);
+    setQuestionState({ category: birdsData[index], question: getQuestion(birdsData[index]), index });
   };
 
-  const question = getQuestion(birdGroup)
+  const [scoreState, setScore] = useState({ score: 0, answerCounter: 5, answer: false })
+
+  const nextLevel = () => {
+    if (questionState.index < birdGroups.length) {
+      setQuestionState({
+        category: birdsData[questionState.index + 1],
+        question: getQuestion(birdsData[questionState.index + 1]),
+        index: questionState.index + 1
+      })
+    }
+  }
 
   const checkAnswer = (answer) => {
-    console.log(answer)
-
+    if (answer) {
+      setScore({
+       ...scoreState,
+       score: scoreState.score + scoreState.answerCounter,
+       answerCounter: 5,
+       answer,
+     })
+      return
+    }
+    setScore({ ...scoreState, answerCounter: scoreState.answerCounter - 1, answer })
   }
+
+  const { category, question } = questionState;
+  const { score, answer } = scoreState;
 
   return (
     <div className='container'>
-      <Header />
+      <Header score={score}/>
       <Navigation birdGroups={ birdGroups } navClickHandler={navClickHandler} />
-      <AboutBird mode='question' question={ question }/>
+      <AboutBird mode='question' question={ question } answer={answer}/>
       <AnswerBlock
-        birdGroup={ birdGroup }
+        category={ category }
         question={question}
         checkAnswer={checkAnswer}
       />
-      <AboutBird mode='description' question={ question }/>
-      <BtnNextLevel />
+      <AboutBird mode='description' question={ question } answer={answer}/>
+      <BtnNextLevel answer={answer} nextLevel={nextLevel}/>
     </div>
   );
 };

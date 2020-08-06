@@ -5,7 +5,7 @@ import AudioPlayer from '../AudioPlayer';
 
 import './AboutBird.scss';
 
-const AboutBird = ({ mode, question: { name, species, description, image, audio } }) => {
+const AboutBird = ({ mode, question: { name, species, description, image, audio }, answer }) => {
   AboutBird.propTypes = {
     mode: PropTypes.string.isRequired,
     question: PropTypes.shape({
@@ -15,20 +15,21 @@ const AboutBird = ({ mode, question: { name, species, description, image, audio 
       description: PropTypes.string,
       image: PropTypes.string,
       audio: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    answer: PropTypes.bool.isRequired
   };
 
   const text = (
     <div className="description">
       <p>
-        { description }
+        { answer ? description : '***' }
       </p>
     </div>
   );
 
   const latinName = (
     <div>
-      <h4>{ species }</h4>
+      <h4>{ answer ? species : '***' }</h4>
       <hr className="hr" />
     </div>
   );
@@ -38,7 +39,7 @@ const AboutBird = ({ mode, question: { name, species, description, image, audio 
       <div className="question">
         <div className="birdImg" style={{backgroundImage: `url(${image})`}}/>
         <div className="info">
-          <h3>{ name }</h3>
+          <h3>{ answer ? name : '***' }</h3>
           <hr className="hr" />
           {mode === 'description' ? latinName : null}
           <AudioPlayer src={audio}/>
