@@ -5,7 +5,7 @@ import Answer from '../Answer';
 
 import './AnswerBlock.scss';
 
-const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer }) => {
+const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer, disabled }) => {
   AnswerBlock.propTypes = {
     category: PropTypes.arrayOf(
       PropTypes.shape({
@@ -25,7 +25,8 @@ const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer }
       image: PropTypes.string,
       audio: PropTypes.string
     }).isRequired,
-    checkAnswer: PropTypes.func.isRequired
+    checkAnswer: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired
   };
 
   return (
@@ -38,6 +39,7 @@ const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer }
             name={name}
             questionName={questionName}
             checkAnswer={checkAnswer}
+            disabled={disabled}
           />
         )
       })}

@@ -7,8 +7,13 @@ import AnswerBlock from '../AnswerBlock';
 import BtnNextLevel from '../BtnNextLevel';
 
 import { birdGroups } from '../../constants';
+import correctSound from '../../../public/audio/correct.mp3';
+import errorSound from '../../../public/audio/error.mp3';
+// import levelSound from '../../../public/audio/levelUp.mp3';
+// import roundSound from '../../../public/audio/roundEnd.mp3';
 import birdsData from '../../data/birdsData';
 import getRandom from '../../utils/getRandom';
+import playSound from '../../utils/playSound';
 
 import './Container.scss';
 
@@ -44,6 +49,7 @@ const Container = () => {
 
   const checkAnswer = (answer) => {
     if (answer) {
+      playSound(correctSound);
       setScore({
        ...scoreState,
        score: scoreState.score + scoreState.answerCounter,
@@ -51,6 +57,7 @@ const Container = () => {
      })
       return
     }
+    playSound(errorSound);
     setScore({ ...scoreState, answerCounter: scoreState.answerCounter - 1, answer })
   }
 
@@ -66,6 +73,7 @@ const Container = () => {
         category={ category }
         question={question}
         checkAnswer={checkAnswer}
+        disabled={answer}
       />
       <AboutBird mode='description' question={ question } answer={answer}/>
       <BtnNextLevel answer={answer} nextLevel={nextLevel}/>

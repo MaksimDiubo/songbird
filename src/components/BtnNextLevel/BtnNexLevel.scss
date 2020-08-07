@@ -6,4 +6,8 @@
   @include font (1.5rem, 1.5rem, normal, uppercase);
   @include block ($color-block-secondary, block, none);
   @include button;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }

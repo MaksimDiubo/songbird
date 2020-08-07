@@ -6,20 +6,24 @@ import moodBad from '../../../public/images/icons/mood_bad.svg';
 
 import './Answer.scss';
 
-const Answer = ({ name, questionName, checkAnswer }) => {
+const Answer = ({ name, questionName, checkAnswer, disabled }) => {
   Answer.propTypes = {
     name: PropTypes.string.isRequired,
     questionName: PropTypes.string.isRequired,
-    checkAnswer: PropTypes.func.isRequired
+    checkAnswer: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired
   };
 
   const [isCorrect, setCorrect] = useState(null)
+  const [isClicked, setClicked] = useState(false)
 
   useEffect(()=> {
     setCorrect(null)
+    setClicked(false)
   }, [name, questionName])
 
   const clickHandler = () => {
+    setClicked(true)
     if (name === questionName) {
       setCorrect(true)
       checkAnswer(true)
@@ -51,6 +55,7 @@ const Answer = ({ name, questionName, checkAnswer }) => {
       name={name}
       className={classNames}
       onClick={(e) => clickHandler(e)}
+      disabled={isClicked || disabled}
     >
       { name }
       {icon}
