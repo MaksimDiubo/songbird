@@ -26,10 +26,10 @@ const Answer = ({ name, questionName, checkAnswer, disabled }) => {
     setClicked(true)
     if (name === questionName) {
       setCorrect(true)
-      checkAnswer(true)
+      checkAnswer(true, name, true)
     } else {
       setCorrect(false)
-      checkAnswer(false)
+      checkAnswer(false, name, true)
     }
   }
 

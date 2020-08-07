@@ -1,0 +1,6 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.placeholder {
+  @include font (1.5rem, 1.5rem);
+}

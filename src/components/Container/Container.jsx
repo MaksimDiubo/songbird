@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 
 import Header from '../Header';
 import Navigation from '../Navigation';
-import AboutBird from '../AboutBird';
+import Question from '../Question';
 import AnswerBlock from '../AnswerBlock';
+import BirdDescription from '../BirdDescription';
+import Placeholder from '../Placeholder';
 import BtnNextLevel from '../BtnNextLevel';
 
 import { birdGroups } from '../../constants';
@@ -30,7 +32,7 @@ const Container = () => {
     setQuestionState({ category: birdsData[index], question: getQuestion(birdsData[index]), index });
   };
 
-  const [scoreState, setScore] = useState({ score: 0, answerCounter: 5, answer: false })
+  const [answerState, setAnswer] = useState({ score: 0, answerCounter: 5, answer: false, selectedVariant: null })
 
   const nextLevel = () => {
     if (questionState.index < birdGroups.length) {
@@ -39,43 +41,60 @@ const Container = () => {
         question: getQuestion(birdsData[questionState.index + 1]),
         index: questionState.index + 1
       })
-      setScore({
-        ...scoreState,
+      setAnswer({
+        ...answerState,
         answerCounter: 5,
-        answer: false
+        answer: false,
+        selectedVariant: null,
       })
     }
   }
 
-  const checkAnswer = (answer) => {
+  const getSelectedBirdData = (selectedName) => {
+    return questionState.category.filter((bird) =>
+      Object.values(bird).includes(selectedName)
+    )[0]
+  }
+
+  const checkAnswer = (answer, selectedName) => {
+    const selectedVariant = getSelectedBirdData(selectedName)
     if (answer) {
       playSound(correctSound);
-      setScore({
-       ...scoreState,
-       score: scoreState.score + scoreState.answerCounter,
+      setAnswer({
+       ...answerState,
+       score: answerState.score + answerState.answerCounter,
        answer,
+       selectedVariant,
      })
       return
     }
     playSound(errorSound);
-    setScore({ ...scoreState, answerCounter: scoreState.answerCounter - 1, answer })
+    setAnswer({
+      ...answerState,
+      answerCounter: answerState.answerCounter - 1,
+      answer,
+      selectedVariant,
+    })
   }
 
   const { category, question } = questionState;
-  const { score, answer } = scoreState;
+  const { score, answer, selectedVariant } = answerState;
 
   return (
     <div className='container'>
       <Header score={score}/>
       <Navigation birdGroups={ birdGroups } navClickHandler={navClickHandler} />
-      <AboutBird mode='question' question={ question } answer={answer}/>
+      <Question
+        question={ question }
+        answer={answer}
+      />
       <AnswerBlock
         category={ category }
         question={question}
         checkAnswer={checkAnswer}
         disabled={answer}
       />
-      <AboutBird mode='description' question={ question } answer={answer}/>
+      {selectedVariant ? <BirdDescription selectedVariant={selectedVariant} /> : <Placeholder />}
       <BtnNextLevel answer={answer} nextLevel={nextLevel}/>
     </div>
   );
