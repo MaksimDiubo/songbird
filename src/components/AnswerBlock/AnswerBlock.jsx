@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Answer from '../Answer';
 
 import './AnswerBlock.scss';
 
-const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer, disabled }) => {
+const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer, showDescription }) => {
   AnswerBlock.propTypes = {
     category: PropTypes.arrayOf(
       PropTypes.shape({
@@ -26,8 +26,18 @@ const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer, 
       audio: PropTypes.string
     }).isRequired,
     checkAnswer: PropTypes.func.isRequired,
-    disabled: PropTypes.bool.isRequired
+    showDescription: PropTypes.func.isRequired,
   };
+
+  const [isLevelEnd, setLevelEnd] = useState(false)
+
+  useEffect(() => {
+    setLevelEnd(false)
+  }, [category])
+
+  const levelEnd = () => {
+    setLevelEnd(true)
+  }
 
   return (
     <div className="answerBlock">
@@ -39,7 +49,9 @@ const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer, 
             name={name}
             questionName={questionName}
             checkAnswer={checkAnswer}
-            disabled={disabled}
+            showDescription={showDescription}
+            levelEnd={levelEnd}
+            isLevelEnd={isLevelEnd}
           />
         )
       })}

@@ -6,12 +6,14 @@ import moodBad from '../../../public/images/icons/mood_bad.svg';
 
 import './Answer.scss';
 
-const Answer = ({ name, questionName, checkAnswer, disabled }) => {
+const Answer = ({ name, questionName, checkAnswer, showDescription, levelEnd, isLevelEnd }) => {
   Answer.propTypes = {
     name: PropTypes.string.isRequired,
     questionName: PropTypes.string.isRequired,
     checkAnswer: PropTypes.func.isRequired,
-    disabled: PropTypes.bool.isRequired
+    showDescription: PropTypes.func.isRequired,
+    levelEnd: PropTypes.func.isRequired,
+    isLevelEnd: PropTypes.bool.isRequired
   };
 
   const [isCorrect, setCorrect] = useState(null)
@@ -23,14 +25,19 @@ const Answer = ({ name, questionName, checkAnswer, disabled }) => {
   }, [name, questionName])
 
   const clickHandler = () => {
-    setClicked(true)
-    if (name === questionName) {
-      setCorrect(true)
-      checkAnswer(true, name, true)
-    } else {
-      setCorrect(false)
-      checkAnswer(false, name, true)
-    }
+      if (!isClicked && !isLevelEnd) {
+        setClicked(true)
+        if (name === questionName) {
+          setCorrect(true)
+          checkAnswer(true, name, true)
+          levelEnd()
+        } else {
+          setCorrect(false)
+          checkAnswer(false, name, true)
+        }
+      } else {
+        showDescription(name)
+      }
   }
 
   let classNames = 'answer';
@@ -55,7 +62,6 @@ const Answer = ({ name, questionName, checkAnswer, disabled }) => {
       name={name}
       className={classNames}
       onClick={(e) => clickHandler(e)}
-      disabled={isClicked || disabled}
     >
       { name }
       {icon}

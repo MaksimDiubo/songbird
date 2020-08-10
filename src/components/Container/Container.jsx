@@ -77,6 +77,14 @@ const Container = () => {
     })
   }
 
+  const showDescription = (selectedName) => {
+    const selectedVariant = getSelectedBirdData(selectedName)
+    setAnswer({
+      ...answerState,
+      selectedVariant,
+    })
+  }
+
   const { category, question } = questionState;
   const { score, answer, selectedVariant } = answerState;
 
@@ -92,7 +100,7 @@ const Container = () => {
         category={ category }
         question={question}
         checkAnswer={checkAnswer}
-        disabled={answer}
+        showDescription={showDescription}
       />
       {selectedVariant ? <BirdDescription selectedVariant={selectedVariant} /> : <Placeholder />}
       <BtnNextLevel answer={answer} nextLevel={nextLevel}/>
