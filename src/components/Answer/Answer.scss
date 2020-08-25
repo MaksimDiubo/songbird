@@ -7,6 +7,7 @@
   @include font (1.5rem, 1.5rem);
   @include button;
   height: 45px;
+  transition: all .3s ease;;
 
 
   &:not(:first-child) {

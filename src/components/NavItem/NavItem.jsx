@@ -3,18 +3,16 @@ import PropTypes from 'prop-types';
 
 import './NavItem.scss';
 
-const NavItem = ({ value, index, navClickHandler }) => {
+const NavItem = ({ value, id, index }) => {
   NavItem.propTypes = {
-    index: PropTypes.number.isRequired,
     value: PropTypes.string.isRequired,
-    navClickHandler: PropTypes.func.isRequired,
+    index: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
   };
 
   return (
-    <li className="navItem">
-      <button type="button" value={value} onClick={() => navClickHandler(index)}>
-        {value}
-      </button>
+    <li className={id === index + 1 ? "navItem active" : "navItem"}>
+      {value}
     </li>
   );
 };

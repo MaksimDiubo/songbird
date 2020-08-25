@@ -3,11 +3,15 @@
 
 .navItem {
   list-style: none;
-
-  & button {
-    @include button;
-    border: none;
-    background-color: transparent;
-    @include font (1.5rem, 1.5rem, normal, uppercase);
-  }
+  padding: 10px;
+  border-radius: 5px;
+  @include font (1.5rem, 1.5rem, normal, uppercase);
 }
+
+.active {
+  background-color: $color-secondary;
+}
+
+
+
+

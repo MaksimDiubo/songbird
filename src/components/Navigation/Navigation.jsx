@@ -5,27 +5,27 @@ import NavItem from '../NavItem';
 
 import './Navigation.scss';
 
-const Navigation = ({ birdGroups, navClickHandler }) => {
+const Navigation = ({ birdGroups, index }) => {
   Navigation.propTypes = {
-    navClickHandler: PropTypes.func.isRequired,
     birdGroups: PropTypes.arrayOf(
       PropTypes.shape({
         value: PropTypes.string,
         id: PropTypes.number,
       })
     ).isRequired,
+    index: PropTypes.number.isRequired,
   };
 
   return (
     <nav className="navigation">
-      {birdGroups.map((el, i) => {
+      {birdGroups.map((el) => {
         const { id, value } = el;
         return (
           <NavItem
             key={id.toString()}
             value={value}
-            index={i}
-            navClickHandler={navClickHandler}
+            index={index}
+            id={id}
           />
         );
       })}

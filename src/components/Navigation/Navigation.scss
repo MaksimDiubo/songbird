@@ -3,5 +3,6 @@
 
 .navigation {
   @include block ($color-block-secondary);
+  padding: 0;
   grid-area: nav;
 }

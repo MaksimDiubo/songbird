@@ -28,10 +28,6 @@ const Container = () => {
 
   const [questionState, setQuestionState] = useState({ category: birdsData[0], question: getQuestion(birdsData[0]), index: 0 });
 
-  const navClickHandler = (index) => {
-    setQuestionState({ category: birdsData[index], question: getQuestion(birdsData[index]), index });
-  };
-
   const [answerState, setAnswer] = useState({ score: 0, answerCounter: 5, answer: false, selectedVariant: null })
 
   const nextLevel = () => {
@@ -85,13 +81,16 @@ const Container = () => {
     })
   }
 
-  const { category, question } = questionState;
+  const { category, question, index } = questionState;
   const { score, answer, selectedVariant } = answerState;
 
   return (
     <div className='container'>
       <Header score={score}/>
-      <Navigation birdGroups={ birdGroups } navClickHandler={navClickHandler} />
+      <Navigation
+        birdGroups={ birdGroups }
+        index={ index }
+      />
       <Question
         question={ question }
         answer={answer}
