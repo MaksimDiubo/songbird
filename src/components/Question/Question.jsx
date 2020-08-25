@@ -25,7 +25,7 @@ const Question = ({ question: { name, image, audio }, answer }) => {
       <div className="birdImg" style={{backgroundImage: `url(${answer ? image : defaultImg})`}} />
       <div className="questionInner">
         <h3>{ answer ? name : '***' }</h3>
-        <AudioPlayer src={audio}/>
+        <AudioPlayer src={audio} autoPlay answer={answer}/>
       </div>
     </div>
   );
