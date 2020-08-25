@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 import './BtnNexLevel.scss';
 
-const BtnNexLevel = ({ nextLevel, answer }) => {
+const BtnNexLevel = ({ clickHandler, answer, btnValue }) => {
   BtnNexLevel.propTypes = {
-    nextLevel: PropTypes.func.isRequired,
-    answer: PropTypes.bool.isRequired
+    clickHandler: PropTypes.func.isRequired,
+    answer: PropTypes.bool.isRequired,
+    btnValue: PropTypes.string.isRequired
   }
 
   return (
@@ -14,9 +15,9 @@ const BtnNexLevel = ({ nextLevel, answer }) => {
       type="button"
       className="btn"
       disabled={!answer}
-      onClick={() => nextLevel()}
+      onClick={() => clickHandler()}
     >
-      next level
+      { btnValue }
     </button>
   );
 };

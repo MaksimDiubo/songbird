@@ -7,6 +7,7 @@ import AnswerBlock from '../AnswerBlock';
 import BirdDescription from '../BirdDescription';
 import Placeholder from '../Placeholder';
 import BtnNextLevel from '../BtnNextLevel';
+import Statistic from '../Statistic';
 
 import { birdGroups } from '../../constants';
 import correctSound from '../../../public/audio/correct.mp3';
@@ -28,10 +29,10 @@ const Container = () => {
 
   const [questionState, setQuestionState] = useState({ category: birdsData[0], question: getQuestion(birdsData[0]), index: 0 });
 
-  const [answerState, setAnswer] = useState({ score: 0, answerCounter: 5, answer: false, selectedVariant: null })
+  const [answerState, setAnswer] = useState({ score: 0, answerCounter: 5, answer: false, selectedVariant: null, showStatistic: false, btnValue: 'следующий уровень' })
 
   const nextLevel = () => {
-    if (questionState.index < birdGroups.length) {
+    if (questionState.index + 1 < birdGroups.length) {
       setQuestionState({
         category: birdsData[questionState.index + 1],
         question: getQuestion(birdsData[questionState.index + 1]),
@@ -42,6 +43,11 @@ const Container = () => {
         answerCounter: 5,
         answer: false,
         selectedVariant: null,
+      })
+    } else {
+      setAnswer({
+        ...answerState,
+        showStatistic: true
       })
     }
   }
@@ -62,6 +68,15 @@ const Container = () => {
        answer,
        selectedVariant,
      })
+     if (questionState.index + 1 >= birdGroups.length) {
+      setAnswer({
+        ...answerState,
+        score: answerState.score + answerState.answerCounter,
+        answer,
+        selectedVariant,
+        btnValue: 'закончить игру'
+      })
+     }
       return
     }
     playSound(errorSound);
@@ -81,8 +96,24 @@ const Container = () => {
     })
   }
 
+  const restartGame = () => {
+    setQuestionState({
+      category: birdsData[0],
+      question: getQuestion(birdsData[0]),
+      index: 0
+    })
+    setAnswer({
+      score: 0,
+      answerCounter: 5,
+      answer: false,
+      selectedVariant: null,
+      showStatistic: false,
+      btnValue: 'следующий уровень'
+    })
+  }
+
   const { category, question, index } = questionState;
-  const { score, answer, selectedVariant } = answerState;
+  const { score, answer, selectedVariant, showStatistic, btnValue } = answerState;
 
   return (
     <div className='container'>
@@ -102,7 +133,8 @@ const Container = () => {
         showDescription={showDescription}
       />
       {selectedVariant ? <BirdDescription selectedVariant={selectedVariant} /> : <Placeholder />}
-      <BtnNextLevel answer={answer} nextLevel={nextLevel}/>
+      <BtnNextLevel answer={answer} clickHandler={nextLevel} btnValue={btnValue}/>
+      {showStatistic ? <Statistic score={score} restartGame={restartGame} /> : null}
     </div>
   );
 };

@@ -10,7 +10,7 @@ const Score = ({ score }) => {
 
   return (
     <p className="score">
-      Score: <span>{score}</span>
+      Счет игры: <span>{score}</span>
     </p>
   );
 };
