@@ -1,16 +1,19 @@
 import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 
+import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
+import 'react-h5-audio-player/src/styles.scss';
+
 import './AudioPlayer.scss';
 
-const AudioPlayer = ({ src, autoPlay, answer }) => {
-  AudioPlayer.propTypes = {
+const Player = ({ src, autoPlay, answer }) => {
+  Player.propTypes = {
     src: PropTypes.string.isRequired,
     autoPlay: PropTypes.bool,
     answer: PropTypes.bool,
   }
 
-  AudioPlayer.defaultProps = {
+ Player.defaultProps = {
     autoPlay: false,
     answer: false
   };
@@ -18,21 +21,28 @@ const AudioPlayer = ({ src, autoPlay, answer }) => {
   const player = useRef(null)
 
   if (answer) {
-    player.current.pause()
+    player.current.audio.current.pause()
   }
 
   return (
-    <audio
+    <AudioPlayer
       className="audioPlayer"
-      controls
+      autoPlay={ autoPlay }
+      autoPlayAfterSrcChange={false}
       src={ src }
-      autoPlay={autoPlay}
-      loop
+      showJumpControls={false}
+      showDownloadProgress={false}
+      customProgressBarSection={
+        [
+          RHAP_UI.CURRENT_TIME,
+          RHAP_UI.PROGRESS_BAR,
+          RHAP_UI.DURATION,
+        ]
+      }
+      customAdditionalControls={[]}
       ref={player}
-    >
-      <track kind="captions" />
-    </audio>
+    />
   );
 };
 
-export default AudioPlayer;
+export default Player;
