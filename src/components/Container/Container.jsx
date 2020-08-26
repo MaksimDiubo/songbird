@@ -12,8 +12,8 @@ import Statistic from '../Statistic';
 import { birdGroups } from '../../constants';
 import correctSound from '../../../public/audio/correct.mp3';
 import errorSound from '../../../public/audio/error.mp3';
-// import levelSound from '../../../public/audio/levelUp.mp3';
-// import roundSound from '../../../public/audio/roundEnd.mp3';
+import levelSound from '../../../public/audio/levelUp.mp3';
+import roundSound from '../../../public/audio/roundEnd.mp3';
 import birdsData from '../../data/birdsData';
 import getRandom from '../../utils/getRandom';
 import playSound from '../../utils/playSound';
@@ -33,6 +33,7 @@ const Container = () => {
 
   const nextLevel = () => {
     if (questionState.index + 1 < birdGroups.length) {
+      playSound(levelSound);
       setQuestionState({
         category: birdsData[questionState.index + 1],
         question: getQuestion(birdsData[questionState.index + 1]),
@@ -45,6 +46,7 @@ const Container = () => {
         selectedVariant: null,
       })
     } else {
+      playSound(roundSound);
       setAnswer({
         ...answerState,
         showStatistic: true

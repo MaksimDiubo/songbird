@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import BtnNextLevel from '../BtnNextLevel';
 
+import { MAX_SCORE } from '../../constants';
+
 import './Statistic.scss';
 
 const Statistic = ({ score, restartGame }) => {
@@ -14,9 +16,9 @@ const Statistic = ({ score, restartGame }) => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <h3>Итоговый счет игры: {score}</h3>
+        <h3>Вы набради { score } из { MAX_SCORE } </h3>
         <hr/>
-        {score < 30 ? <p>Хороший результат!!!</p> : <p>Поздравляем! Вы набрали максимальное колличество очков!!! Приглашение на ежегодный форум орнитологов пришлем Вам по почте! Естественно голубиной....</p>}
+        {score < MAX_SCORE ? <p>Хороший результат!!!</p> : <p>Поздравляем! Вы набрали максимальное колличество очков!!! Приглашение на ежегодный форум орнитологов пришлем Вам по почте! Естественно голубиной....</p>}
         <hr/>
         <BtnNextLevel answer clickHandler={restartGame} btnValue="заново!" />
       </div>
