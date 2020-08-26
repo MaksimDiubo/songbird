@@ -8,6 +8,7 @@ import BirdDescription from '../BirdDescription';
 import Placeholder from '../Placeholder';
 import BtnNextLevel from '../BtnNextLevel';
 import Statistic from '../Statistic';
+import WelcomeDialog from '../WelcomeDialog';
 
 import { birdGroups } from '../../constants';
 import correctSound from '../../../public/audio/correct.mp3';
@@ -27,6 +28,7 @@ const Container = () => {
   };
 
   const [questionState, setQuestionState] = useState({
+    showWelcomeDialog: true,
     category: birdsData[0],
     question: getQuestion(birdsData[0]),
     index: 0,
@@ -108,6 +110,7 @@ const Container = () => {
 
   const restartGame = () => {
     setQuestionState({
+      showWelcomeDialog: false,
       category: birdsData[0],
       question: getQuestion(birdsData[0]),
       index: 0,
@@ -122,25 +125,28 @@ const Container = () => {
     });
   };
 
-  const { category, question, index } = questionState;
+  const { showWelcomeDialog, category, question, index } = questionState;
   const { score, answer, selectedVariant, showStatistic, btnValue } = answerState;
 
-  return (
-    <div className="container">
-      <Header score={score} />
-      <Navigation birdGroups={birdGroups} index={index} />
-      <Question question={question} answer={answer} />
-      <AnswerBlock
-        category={category}
-        question={question}
-        checkAnswer={checkAnswer}
-        showDescription={showDescription}
-      />
-      {selectedVariant ? <BirdDescription selectedVariant={selectedVariant} /> : <Placeholder />}
-      <BtnNextLevel answer={answer} clickHandler={nextLevel} btnValue={btnValue} />
-      {showStatistic ? <Statistic score={score} restartGame={restartGame} /> : null}
-    </div>
-  );
+  if (showWelcomeDialog) {
+    return <WelcomeDialog restartGame={restartGame} />
+  }
+    return (
+      <div className="container">
+        <Header score={score} />
+        <Navigation birdGroups={birdGroups} index={index} />
+        <Question question={question} answer={answer} />
+        <AnswerBlock
+          category={category}
+          question={question}
+          checkAnswer={checkAnswer}
+          showDescription={showDescription}
+        />
+        {selectedVariant ? <BirdDescription selectedVariant={selectedVariant} /> : <Placeholder />}
+        <BtnNextLevel answer={answer} clickHandler={nextLevel} btnValue={btnValue} />
+        {showStatistic ? <Statistic score={score} restartGame={restartGame} /> : null}
+      </div>
+    );
 };
 
 export default Container;
