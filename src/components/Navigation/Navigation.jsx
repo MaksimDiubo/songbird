@@ -20,14 +20,7 @@ const Navigation = ({ birdGroups, index }) => {
     <nav className="navigation">
       {birdGroups.map((el) => {
         const { id, value } = el;
-        return (
-          <NavItem
-            key={id.toString()}
-            value={value}
-            index={index}
-            id={id}
-          />
-        );
+        return <NavItem key={id.toString()} value={value} index={index} id={id} />;
       })}
     </nav>
   );

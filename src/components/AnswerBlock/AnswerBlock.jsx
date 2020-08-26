@@ -5,7 +5,12 @@ import Answer from '../Answer';
 
 import './AnswerBlock.scss';
 
-const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer, showDescription }) => {
+const AnswerBlock = ({
+  category,
+  question: { name: questionName },
+  checkAnswer,
+  showDescription,
+}) => {
   AnswerBlock.propTypes = {
     category: PropTypes.arrayOf(
       PropTypes.shape({
@@ -14,7 +19,7 @@ const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer, 
         species: PropTypes.string,
         description: PropTypes.string,
         image: PropTypes.string,
-        audio: PropTypes.string
+        audio: PropTypes.string,
       })
     ).isRequired,
     question: PropTypes.shape({
@@ -23,25 +28,25 @@ const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer, 
       species: PropTypes.string,
       description: PropTypes.string,
       image: PropTypes.string,
-      audio: PropTypes.string
+      audio: PropTypes.string,
     }).isRequired,
     checkAnswer: PropTypes.func.isRequired,
     showDescription: PropTypes.func.isRequired,
   };
 
-  const [isLevelEnd, setLevelEnd] = useState(false)
+  const [isLevelEnd, setLevelEnd] = useState(false);
 
   useEffect(() => {
-    setLevelEnd(false)
-  }, [category])
+    setLevelEnd(false);
+  }, [category]);
 
   const levelEnd = () => {
-    setLevelEnd(true)
-  }
+    setLevelEnd(true);
+  };
 
   return (
     <div className="answerBlock">
-      { category.map((el) => {
+      {category.map((el) => {
         const { id, name } = el;
         return (
           <Answer
@@ -53,7 +58,7 @@ const AnswerBlock = ({ category, question: { name: questionName }, checkAnswer, 
             levelEnd={levelEnd}
             isLevelEnd={isLevelEnd}
           />
-        )
+        );
       })}
     </div>
   );

@@ -10,11 +10,7 @@ const NavItem = ({ value, id, index }) => {
     id: PropTypes.number.isRequired,
   };
 
-  return (
-    <li className={id === index + 1 ? "navItem active" : "navItem"}>
-      {value}
-    </li>
-  );
+  return <li className={id === index + 1 ? 'navItem active' : 'navItem'}>{value}</li>;
 };
 
 export default NavItem;

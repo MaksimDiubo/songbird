@@ -5,8 +5,8 @@ import './Score.scss';
 
 const Score = ({ score }) => {
   Score.propTypes = {
-    score: PropTypes.number.isRequired
-  }
+    score: PropTypes.number.isRequired,
+  };
 
   return (
     <p className="score">

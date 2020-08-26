@@ -8,13 +8,13 @@ import './Header.scss';
 
 const Header = ({ score }) => {
   Header.propTypes = {
-    score: PropTypes.number.isRequired
-  }
+    score: PropTypes.number.isRequired,
+  };
 
   return (
     <div className="header">
       <Logo />
-      <Score score={score}/>
+      <Score score={score} />
     </div>
   );
 };

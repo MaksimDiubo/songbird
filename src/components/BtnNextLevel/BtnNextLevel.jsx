@@ -7,17 +7,12 @@ const BtnNexLevel = ({ clickHandler, answer, btnValue }) => {
   BtnNexLevel.propTypes = {
     clickHandler: PropTypes.func.isRequired,
     answer: PropTypes.bool.isRequired,
-    btnValue: PropTypes.string.isRequired
-  }
+    btnValue: PropTypes.string.isRequired,
+  };
 
   return (
-    <button
-      type="button"
-      className="btn"
-      disabled={!answer}
-      onClick={() => clickHandler()}
-    >
-      { btnValue }
+    <button type="button" className="btn" disabled={!answer} onClick={() => clickHandler()}>
+      {btnValue}
     </button>
   );
 };
