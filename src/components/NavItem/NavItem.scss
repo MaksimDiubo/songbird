@@ -2,11 +2,15 @@
 @import '../../scss/abstracts/variables';
 
 .navItem {
+  @include font (1.3rem, 1.3rem, normal, uppercase);
   list-style: none;
   padding: 10px;
   border-radius: 5px;
-  @include font (1.5rem, 1.5rem, normal, uppercase);
   transition: all .3s ease-in;
+
+  @include media-tablet-large {
+    @include font (1.5rem, 1.5rem, normal, uppercase);
+  }
 }
 
 .active {

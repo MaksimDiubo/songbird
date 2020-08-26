@@ -2,5 +2,9 @@
 @import '../../scss/abstracts/variables';
 
 .score {
-  @include font (3rem, 2.5rem)
+  @include font (2.5rem, 2.5rem);
+
+  @include media-tablet {
+    @include font (3rem, 2.5rem);
+  }
 }

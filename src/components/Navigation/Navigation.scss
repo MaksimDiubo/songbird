@@ -2,7 +2,13 @@
 @import '../../scss/abstracts/variables';
 
 .navigation {
-  @include block ($color-block-secondary);
+  @include block ($color-block-secondary, flex, center);
+  flex-wrap: wrap;
+
   padding: 0;
   grid-area: nav;
+
+  @include media-tablet {
+    flex-wrap: nowrap;
+  }
 }

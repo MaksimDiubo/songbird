@@ -6,12 +6,20 @@
   text-transform: $transform;
 }
 
-@mixin media-tablet {
-  @media (max-width: $tablet-width) { @content; }
+@mixin media-desktop {
+  @media (min-width: $desktop-width) { @content; }
 }
 
-@mixin media-desktop {
-  @media (max-width: $desktop-width) { @content; }
+@mixin media-small-desktop {
+  @media (min-width: $small-desktop-width) { @content; }
+}
+
+@mixin media-tablet-large {
+  @media (min-width: $tablet-large-width) { @content; }
+}
+
+@mixin media-tablet {
+  @media (min-width: $tablet-width) { @content; }
 }
 
 @mixin block ($color: $color-block, $display: flex, $justify-content: space-between) {

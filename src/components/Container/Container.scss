@@ -1,13 +1,35 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
 .container {
-  max-width: 1140px;
   margin: auto;
-  padding: 50px 0 50px 0;
+  padding: 50px 10px 50px 10px;
   display: grid;
+  gap: 10px;
   grid-template:
+    "header header"
+    "nav nav"
+    "question question"
+    "answer answer"
+    "description description"
+    "btn btn" / 1fr 1fr;
+
+  @include media-tablet {
+    max-width: 549px;
+  }
+  @include media-tablet-large {
+    max-width: 720px;
+    grid-template:
     "header header"
     "nav nav"
     "question question"
     "answer description"
     "btn btn" / 1fr 1fr;
-  gap: 10px;
+  }
+  @include media-small-desktop {
+    max-width: 960px;
+  }
+  @include media-desktop {
+    max-width: 1140px;
+  }
 }
