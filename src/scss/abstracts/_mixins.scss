@@ -1,0 +1,40 @@
+@mixin font ($size, $height, $weight: normal, $transform: none, $style: normal,) {
+  font-size: $size;
+  font-style: $style;
+  font-weight: $weight;
+  line-height: $height;
+  text-transform: $transform;
+}
+
+@mixin media-desktop {
+  @media (min-width: $desktop-width) { @content; }
+}
+
+@mixin media-small-desktop {
+  @media (min-width: $small-desktop-width) { @content; }
+}
+
+@mixin media-tablet-large {
+  @media (min-width: $tablet-large-width) { @content; }
+}
+
+@mixin media-tablet {
+  @media (min-width: $tablet-width) { @content; }
+}
+
+@mixin block ($color: $color-block, $display: flex, $justify-content: space-between) {
+  padding: 10px;
+  display: $display;
+  justify-content: $justify-content;
+  border: 1px solid $color-primary;
+  border-radius: 5px;
+  background-color: $color;
+}
+
+@mixin button {
+  font-family: 'Roboto', sans-serif;
+  color: $color-text;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+}

@@ -1,0 +1,50 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.welcomeDialog {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: radial-gradient(circle, $color-background 0%, $color-secondary 100%);
+
+  & h2 {
+    line-height: 2.5rem;
+  }
+}
+
+.welcomeDialog-content {
+  @include block ($color-block-secondary, flex);
+  flex-direction: column;
+  align-items: center;
+  @include font (1.5rem, 1.5rem, normal, none);
+  margin: 15% auto;
+  width: 80%;
+  animation: .3s ease-in showModal;
+
+  @include media-tablet {
+    width: 50%;
+  }
+
+  & hr {
+    width: 100%;
+  }
+
+  & button {
+    box-shadow: 0 0 5px 2px;
+  }
+}
+
+@keyframes showModal {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 80%;
+  }
+}

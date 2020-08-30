@@ -1,0 +1,11 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.header {
+  padding: 10px;
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include block ($color-block-primary);
+}

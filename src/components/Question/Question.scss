@@ -1,0 +1,35 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.question {
+  grid-area: question;
+  width: 100%;
+  @include block ($color-block-primary, block, none);
+  display: flex;
+  justify-content: space-between;
+}
+
+.questionInner {
+  flex: 1 1 80%;
+
+  h3 {
+    @include font (2.5rem, 2.5rem);
+    margin: 10px 0 10px 0;
+  }
+}
+
+.birdImg {
+  flex: 1 1 20%;
+  max-width: 150px;
+  margin-right: 20px;
+  height: 150px;
+  background-image: url(../../../public/images/logo/logo.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.hr {
+  opacity: .3;
+}

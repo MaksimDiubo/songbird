@@ -1,0 +1,15 @@
+@import '../abstracts/variables';
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: $color-text;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}

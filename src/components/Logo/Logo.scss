@@ -1,0 +1,14 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.logo {
+  width: 100px;
+  height: 100px;
+  background: url(./../../../public/images/logo/logo.png) center no-repeat;
+  background-size: contain;
+
+  @include media-tablet-large {
+    width: 150px;
+    height: 150px;
+  }
+}

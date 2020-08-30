@@ -1,0 +1,7 @@
+@import '../../scss/abstracts/mixins';
+@import '../../scss/abstracts/variables';
+
+.answerBlock {
+  grid-area: answer;
+  @include block ($color-block-primary, block, none);
+}
