@@ -11,6 +11,10 @@
   height: 100%;
   overflow: auto;
   background: radial-gradient(circle, $color-background 0%, $color-secondary 100%);
+
+  & h2 {
+    line-height: 2.5rem;
+  }
 }
 
 .welcomeDialog-content {
